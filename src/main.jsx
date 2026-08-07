@@ -8,8 +8,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
-  });
-}
+// El service worker propio se quitó: OneSignal registra el suyo
+// (OneSignalSDKWorker.js) automáticamente, y con ese basta también
+// para que la app sea instalable.
