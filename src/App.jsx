@@ -10,6 +10,7 @@ import {
   Clock,
   Bell,
   BellOff,
+  Download,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -547,6 +548,24 @@ export default function BitacoraHabitos() {
           </button>
         </div>
       </div>
+
+      {/* Descargar app para Android */}
+      <a
+        href="/bitacora-habitos.apk"
+        download
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 6,
+          fontSize: 12,
+          color: THEME.brass,
+          textDecoration: "none",
+          marginBottom: 18,
+          marginTop: -10,
+        }}
+      >
+        <Download size={13} /> Descargar app para Android (.apk)
+      </a>
 
       {/* Cuadro para agregar hábitos */}
       <div
