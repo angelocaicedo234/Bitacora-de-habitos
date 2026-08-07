@@ -319,6 +319,17 @@ export default function BitacoraHabitos() {
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
   const [month, setMonth] = useState(now.getMonth());
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  useEffect(() => {
+    const standalone =
+      (typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(display-mode: standalone)").matches) ||
+      (typeof document !== "undefined" && document.referrer.startsWith("android-app://")) ||
+      (typeof window !== "undefined" && window.navigator.standalone === true);
+    setIsInstalled(!!standalone);
+  }, []);
   const [newName, setNewName] = useState("");
   const [newColor, setNewColor] = useState(HABIT_COLORS[0].hex);
   const [newReminder, setNewReminder] = useState("");
@@ -549,23 +560,25 @@ export default function BitacoraHabitos() {
         </div>
       </div>
 
-      {/* Descargar app para Android */}
-      <a
-        href="/bitacora-habitos.apk"
-        download
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          fontSize: 12,
-          color: THEME.brass,
-          textDecoration: "none",
-          marginBottom: 18,
-          marginTop: -10,
-        }}
-      >
-        <Download size={13} /> Descargar app para Android (.apk)
-      </a>
+      {/* Descargar app para Android (solo si no se abre ya instalada) */}
+      {!isInstalled && (
+        <a
+          href="/bitacora-habitos.apk"
+          download
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontSize: 12,
+            color: THEME.brass,
+            textDecoration: "none",
+            marginBottom: 18,
+            marginTop: -10,
+          }}
+        >
+          <Download size={13} /> Descargar app para Android (.apk)
+        </a>
+      )}
 
       {/* Cuadro para agregar hábitos */}
       <div
