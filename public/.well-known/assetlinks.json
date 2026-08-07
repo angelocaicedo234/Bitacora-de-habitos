@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.netlify.bitacorahabitos.twa",
+    "sha256_cert_fingerprints": ["E6:5F:A4:E6:F5:E1:6D:D9:F6:CE:93:92:E2:45:34:99:93:4F:F5:A9:9C:29:07:89:37:34:CD:7A:B4:EF:80:F3"]
+  }
+}]
