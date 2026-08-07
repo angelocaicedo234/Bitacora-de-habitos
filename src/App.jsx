@@ -391,8 +391,14 @@ export default function BitacoraHabitos() {
   }, [habits]);
 
   function requestNotifications() {
-    if (typeof Notification === "undefined") return;
-    Notification.requestPermission().then((perm) => setNotifStatus(perm));
+    if (typeof Notification !== "undefined") {
+      Notification.requestPermission().then((perm) => setNotifStatus(perm));
+    }
+    if (typeof window !== "undefined" && window.OneSignalDeferred) {
+      window.OneSignalDeferred.push(async function (OneSignal) {
+        await OneSignal.Slidedown.promptPush();
+      });
+    }
   }
 
   const daysCount = daysInMonth(year, month);
@@ -687,7 +693,7 @@ export default function BitacoraHabitos() {
               marginTop: 12,
             }}
           >
-            <BellOff size={13} /> Activar notificaciones de recordatorio en este navegador
+            <BellOff size={13} /> Activar notificaciones (recordatorio diario, aunque cierres la app)
           </button>
         )}
       </div>
